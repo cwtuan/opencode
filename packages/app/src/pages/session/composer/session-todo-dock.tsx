@@ -89,7 +89,6 @@ export function SessionTodoDock(props: {
   const shut = createMemo(() => 1 - dock())
   const value = createMemo(() => Math.max(0, Math.min(1, collapse())))
   const hide = createMemo(() => Math.max(value(), shut()))
-  const turn = createMemo(() => Math.max(0, Math.min(1, value())))
   const [height, setHeight] = createSignal(320)
   const full = createMemo(() => Math.max(78, height()))
   let contentRef: HTMLDivElement | undefined
@@ -172,7 +171,7 @@ export function SessionTodoDock(props: {
               icon="chevron-down"
               size="normal"
               variant="ghost"
-              style={{ transform: `rotate(${turn() * 180}deg)` }}
+              style={{ transform: `rotate(${value() * 180}deg)` }}
               onMouseDown={(event) => {
                 event.preventDefault()
                 event.stopPropagation()
